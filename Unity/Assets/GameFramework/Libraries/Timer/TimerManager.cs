@@ -253,7 +253,9 @@ namespace GameFramework.Timer
             {
                 if (m_TimerList[i].ID == timerId)
                 {
+                    var timer = m_TimerList[i];
                     m_TimerList.RemoveAt(i);
+                    ReferencePool.Release(timer);
                     return;
                 }
             }
@@ -262,7 +264,9 @@ namespace GameFramework.Timer
             {
                 if (m_UnscaledTimerList[i].ID == timerId)
                 {
+                    var timer = m_UnscaledTimerList[i];
                     m_UnscaledTimerList.RemoveAt(i);
+                    ReferencePool.Release(timer);
                     return;
                 }
             }

@@ -8,6 +8,7 @@
 //------------------------------------------------------------------------------
 
 using Luban;
+using SimpleJSON;
 
 namespace GameConfig
 {
@@ -22,7 +23,7 @@ public partial class Tables
         {
             if (m_TbEntity == null)
             {
-                m_TbEntity = new TbEntity(defaultLoader("tbentity"));
+                m_TbEntity = new TbEntity(byteBufLoader("tbentity"));
                 m_TbEntity.ResolveRef(this);
             }
             return m_TbEntity;
@@ -40,7 +41,7 @@ public partial class Tables
         {
             if (m_TbMusic == null)
             {
-                m_TbMusic = new TbMusic(defaultLoader("tbmusic"));
+                m_TbMusic = new TbMusic(byteBufLoader("tbmusic"));
                 m_TbMusic.ResolveRef(this);
             }
             return m_TbMusic;
@@ -58,7 +59,7 @@ public partial class Tables
         {
             if (m_TbScene == null)
             {
-                m_TbScene = new TbScene(defaultLoader("tbscene"));
+                m_TbScene = new TbScene(byteBufLoader("tbscene"));
                 m_TbScene.ResolveRef(this);
             }
             return m_TbScene;
@@ -76,7 +77,7 @@ public partial class Tables
         {
             if (m_TbSound == null)
             {
-                m_TbSound = new TbSound(defaultLoader("tbsound"));
+                m_TbSound = new TbSound(byteBufLoader("tbsound"));
                 m_TbSound.ResolveRef(this);
             }
             return m_TbSound;
@@ -94,7 +95,7 @@ public partial class Tables
         {
             if (m_TbUIForm == null)
             {
-                m_TbUIForm = new TbUIForm(defaultLoader("tbuiform"));
+                m_TbUIForm = new TbUIForm(byteBufLoader("tbuiform"));
                 m_TbUIForm.ResolveRef(this);
             }
             return m_TbUIForm;
@@ -112,7 +113,7 @@ public partial class Tables
         {
             if (m_TbUISound == null)
             {
-                m_TbUISound = new TbUISound(defaultLoader("tbuisound"));
+                m_TbUISound = new TbUISound(byteBufLoader("tbuisound"));
                 m_TbUISound.ResolveRef(this);
             }
             return m_TbUISound;
@@ -130,7 +131,7 @@ public partial class Tables
         {
             if (m_TbAircraft == null)
             {
-                m_TbAircraft = new TbAircraft(defaultLoader("tbaircraft"));
+                m_TbAircraft = new TbAircraft(byteBufLoader("tbaircraft"));
                 m_TbAircraft.ResolveRef(this);
             }
             return m_TbAircraft;
@@ -148,7 +149,7 @@ public partial class Tables
         {
             if (m_TbArmor == null)
             {
-                m_TbArmor = new TbArmor(defaultLoader("tbarmor"));
+                m_TbArmor = new TbArmor(byteBufLoader("tbarmor"));
                 m_TbArmor.ResolveRef(this);
             }
             return m_TbArmor;
@@ -166,7 +167,7 @@ public partial class Tables
         {
             if (m_TbAsteroid == null)
             {
-                m_TbAsteroid = new TbAsteroid(defaultLoader("tbasteroid"));
+                m_TbAsteroid = new TbAsteroid(byteBufLoader("tbasteroid"));
                 m_TbAsteroid.ResolveRef(this);
             }
             return m_TbAsteroid;
@@ -184,7 +185,7 @@ public partial class Tables
         {
             if (m_TbThruster == null)
             {
-                m_TbThruster = new TbThruster(defaultLoader("tbthruster"));
+                m_TbThruster = new TbThruster(byteBufLoader("tbthruster"));
                 m_TbThruster.ResolveRef(this);
             }
             return m_TbThruster;
@@ -202,7 +203,7 @@ public partial class Tables
         {
             if (m_TbWeapon == null)
             {
-                m_TbWeapon = new TbWeapon(defaultLoader("tbweapon"));
+                m_TbWeapon = new TbWeapon(byteBufLoader("tbweapon"));
                 m_TbWeapon.ResolveRef(this);
             }
             return m_TbWeapon;
@@ -216,9 +217,16 @@ public partial class Tables
 
     #endregion
 
-    System.Func<string, ByteBuf> defaultLoader;
+    System.Func<string, ByteBuf> byteBufLoader;
+    System.Func<string, JSONNode> jsonLoader;
 
     public Tables(System.Func<string, ByteBuf> loader)
+    {
+        SetDefaultLoader(loader);
+        Init();
+    }
+
+    public Tables(System.Func<string, JSONNode> loader)
     {
         SetDefaultLoader(loader);
         Init();
@@ -226,8 +234,14 @@ public partial class Tables
     
     public void SetDefaultLoader(System.Func<string, ByteBuf> loader)
     {
-        defaultLoader = null;
-        defaultLoader = loader;
+        byteBufLoader = null;
+        byteBufLoader = loader;
+    }
+
+    public void SetDefaultLoader(System.Func<string, JSONNode> loader)
+    {
+        jsonLoader = null;
+        jsonLoader = loader;
     }
 
     //public partial void Init();

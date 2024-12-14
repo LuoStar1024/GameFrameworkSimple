@@ -5,7 +5,6 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework.DataTable;
 using GameFramework.Event;
 using UnityGameFramework.Runtime;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
@@ -59,16 +58,15 @@ namespace StarForce
 
             int sceneId = procedureOwner.GetData<VarInt32>("NextSceneId");
             m_ChangeToMenu = sceneId == MenuSceneId;
-            IDataTable<DRScene> dtScene = GameEntry.DataTable.GetDataTable<DRScene>();
-            DRScene drScene = dtScene.GetDataRow(sceneId);
-            if (drScene == null)
+            var cfgScene = GameEntry.Luban.Tables.TbScene.Get(sceneId);
+            if (cfgScene == null)
             {
                 Log.Warning("Can not load scene '{0}' from data table.", sceneId.ToString());
                 return;
             }
 
-            GameEntry.Scene.LoadScene(AssetUtility.GetSceneAsset(drScene.AssetName), Constant.AssetPriority.SceneAsset, this);
-            m_BackgroundMusicId = drScene.BackgroundMusicId;
+            GameEntry.Scene.LoadScene(AssetUtility.GetSceneAsset(cfgScene.AssetName), Constant.AssetPriority.SceneAsset, this);
+            m_BackgroundMusicId = cfgScene.BackgroundId;
         }
 
         protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)

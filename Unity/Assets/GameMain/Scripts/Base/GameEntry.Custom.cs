@@ -5,6 +5,7 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
+using GameProto;
 using UnityEngine;
 
 namespace StarForce
@@ -14,6 +15,12 @@ namespace StarForce
     /// </summary>
     public partial class GameEntry : MonoBehaviour
     {
+        public static LubanComponent Luban
+        {
+            get;
+            private set;
+        }
+        
         public static BuiltinDataComponent BuiltinData
         {
             get;
@@ -28,6 +35,7 @@ namespace StarForce
 
         private static void InitCustomComponents()
         {
+            Luban = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<LubanComponent>();
             BuiltinData = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<BuiltinDataComponent>();
             HPBar = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<HPBarComponent>();
         }

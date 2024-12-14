@@ -2,12 +2,12 @@ Cd /d %~dp0
 echo %CD%
 
 set WORKSPACE=../..
-set LUBAN_DLL=%WORKSPACE%\Tools\Luban\Luban.dll
+set LUBAN_DLL=%WORKSPACE%\Tools\Luban\LubanDll\Luban.dll
 set CONF_ROOT=.
-set DATA_OUTPATH=%WORKSPACE%/UnityProject/Assets/AssetRaw/Configs/bytes/
-set CODE_OUTPATH=%WORKSPACE%/UnityProject/Assets/GameScripts/HotFix/GameProto/GameConfig/
+set DATA_OUTPATH=%WORKSPACE%/Unity/Assets/GameRes/Configs/
+set CODE_OUTPATH=%WORKSPACE%/Unity/Assets/GameScripts/Hotfix/GameProto/GameConfig/
 
-xcopy /s /e /i /y "%CONF_ROOT%\CustomTemplate\ConfigSystem.cs" "%WORKSPACE%\UnityProject\Assets\GameScripts\HotFix\GameProto\ConfigSystem.cs"
+xcopy /s /e /i /y "%CONF_ROOT%\CustomTemplate\LubanComponent.cs" "%WORKSPACE%\Unity\Assets\GameScripts\Hotfix\GameProto\LubanComponent.cs"
 
 dotnet %LUBAN_DLL% ^
     -t client ^

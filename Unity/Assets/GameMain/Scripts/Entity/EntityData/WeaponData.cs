@@ -5,7 +5,6 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework.DataTable;
 using System;
 using UnityEngine;
 
@@ -32,18 +31,17 @@ namespace StarForce
         public WeaponData(int entityId, int typeId, int ownerId, CampType ownerCamp)
             : base(entityId, typeId, ownerId, ownerCamp)
         {
-            IDataTable<DRWeapon> dtWeapon = GameEntry.DataTable.GetDataTable<DRWeapon>();
-            DRWeapon drWeapon = dtWeapon.GetDataRow(TypeId);
-            if (drWeapon == null)
+            var cfgWeapon = GameEntry.Luban.Tables.TbWeapon.Get(TypeId);
+            if (cfgWeapon == null)
             {
                 return;
             }
 
-            m_Attack = drWeapon.Attack;
-            m_AttackInterval = drWeapon.AttackInterval;
-            m_BulletId = drWeapon.BulletId;
-            m_BulletSpeed = drWeapon.BulletSpeed;
-            m_BulletSoundId = drWeapon.BulletSoundId;
+            m_Attack = cfgWeapon.Attack;
+            m_AttackInterval = cfgWeapon.AttackInterval;
+            m_BulletId = cfgWeapon.BulletId;
+            m_BulletSpeed = cfgWeapon.BulletSpeed;
+            m_BulletSoundId = cfgWeapon.BulletSoundId;
         }
 
         /// <summary>

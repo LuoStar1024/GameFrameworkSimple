@@ -43,15 +43,6 @@ namespace StarForce
         }
 
         /// <summary>
-        /// 获取数据表组件。
-        /// </summary>
-        public static DataTableComponent DataTable
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
         /// 获取调试组件。
         /// </summary>
         public static DebuggerComponent Debugger
@@ -209,7 +200,6 @@ namespace StarForce
             Base = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<BaseComponent>();
             Config = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<ConfigComponent>();
             DataNode = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<DataNodeComponent>();
-            DataTable = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<DataTableComponent>();
             Debugger = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<DebuggerComponent>();
             Download = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<DownloadComponent>();
             Entity = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<EntityComponent>();

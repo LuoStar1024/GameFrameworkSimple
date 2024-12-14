@@ -5,8 +5,8 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework.DataTable;
 using System;
+using GameConfig;
 using UnityEngine;
 
 namespace StarForce
@@ -35,19 +35,18 @@ namespace StarForce
         public AsteroidData(int entityId, int typeId)
             : base(entityId, typeId, CampType.Neutral)
         {
-            IDataTable<DRAsteroid> dtAsteroid = GameEntry.DataTable.GetDataTable<DRAsteroid>();
-            DRAsteroid drAsteroid = dtAsteroid.GetDataRow(TypeId);
-            if (drAsteroid == null)
+            var cfgAsteroid = GameEntry.Luban.Tables.TbAsteroid.Get(TypeId);
+            if (cfgAsteroid == null)
             {
                 return;
             }
 
-            HP = m_MaxHP = drAsteroid.MaxHP;
-            m_Attack = drAsteroid.Attack;
-            m_Speed = drAsteroid.Speed;
-            m_AngularSpeed = drAsteroid.AngularSpeed;
-            m_DeadEffectId = drAsteroid.DeadEffectId;
-            m_DeadSoundId = drAsteroid.DeadSoundId;
+            HP = m_MaxHP = cfgAsteroid.MaxHp;
+            m_Attack = cfgAsteroid.Attack;
+            m_Speed = cfgAsteroid.Speed;
+            m_AngularSpeed = cfgAsteroid.AngularSpeed;
+            m_DeadEffectId = cfgAsteroid.DeadEffectId;
+            m_DeadSoundId = cfgAsteroid.DeadSoundId;
         }
 
         public override int MaxHP

@@ -5,7 +5,6 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework.DataTable;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,27 +38,27 @@ namespace StarForce
         public AircraftData(int entityId, int typeId, CampType camp)
             : base(entityId, typeId, camp)
         {
-            IDataTable<DRAircraft> dtAircraft = GameEntry.DataTable.GetDataTable<DRAircraft>();
-            DRAircraft drAircraft = dtAircraft.GetDataRow(TypeId);
-            if (drAircraft == null)
+            var cfgAircraft = GameEntry.Luban.Tables.TbAircraft.Get(TypeId);
+            if (cfgAircraft == null)
             {
                 return;
             }
 
-            m_ThrusterData = new ThrusterData(GameEntry.Entity.GenerateSerialId(), drAircraft.ThrusterId, Id, Camp);
+            m_ThrusterData = new ThrusterData(GameEntry.Entity.GenerateSerialId(), cfgAircraft.ThrusterId, Id, Camp);
 
-            for (int index = 0, weaponId = 0; (weaponId = drAircraft.GetWeaponIdAt(index)) > 0; index++)
-            {
-                AttachWeaponData(new WeaponData(GameEntry.Entity.GenerateSerialId(), weaponId, Id, Camp));
-            }
+            // TODO
+            // for (int index = 0, weaponId = 0; (weaponId = aircraft.GetWeaponIdAt(index)) > 0; index++)
+            // {
+            //     AttachWeaponData(new WeaponData(GameEntry.Entity.GenerateSerialId(), weaponId, Id, Camp));
+            // }
+            //
+            // for (int index = 0, armorId = 0; (armorId = aircraft.GetArmorIdAt(index)) > 0; index++)
+            // {
+            //     AttachArmorData(new ArmorData(GameEntry.Entity.GenerateSerialId(), armorId, Id, Camp));
+            // }
 
-            for (int index = 0, armorId = 0; (armorId = drAircraft.GetArmorIdAt(index)) > 0; index++)
-            {
-                AttachArmorData(new ArmorData(GameEntry.Entity.GenerateSerialId(), armorId, Id, Camp));
-            }
-
-            m_DeadEffectId = drAircraft.DeadEffectId;
-            m_DeadSoundId = drAircraft.DeadSoundId;
+            m_DeadEffectId = cfgAircraft.DeadEffectId;
+            m_DeadSoundId = cfgAircraft.DeadSoundId;
 
             HP = m_MaxHP;
         }

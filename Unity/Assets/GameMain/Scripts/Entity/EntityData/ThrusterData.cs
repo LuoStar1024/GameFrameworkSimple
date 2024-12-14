@@ -5,7 +5,6 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework.DataTable;
 using System;
 using UnityEngine;
 
@@ -20,14 +19,13 @@ namespace StarForce
         public ThrusterData(int entityId, int typeId, int ownerId, CampType ownerCamp)
             : base(entityId, typeId, ownerId, ownerCamp)
         {
-            IDataTable<DRThruster> dtThruster = GameEntry.DataTable.GetDataTable<DRThruster>();
-            DRThruster drThruster = dtThruster.GetDataRow(TypeId);
-            if (drThruster == null)
+            var cfgThruster = GameEntry.Luban.Tables.TbThruster.Get(TypeId);
+            if (cfgThruster == null)
             {
                 return;
             }
 
-            m_Speed = drThruster.Speed;
+            m_Speed = cfgThruster.Speed;
         }
 
         /// <summary>

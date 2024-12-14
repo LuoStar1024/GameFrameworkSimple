@@ -5,7 +5,6 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework.DataTable;
 using System;
 using UnityEngine;
 
@@ -23,15 +22,14 @@ namespace StarForce
         public ArmorData(int entityId, int typeId, int ownerId, CampType ownerCamp)
             : base(entityId, typeId, ownerId, ownerCamp)
         {
-            IDataTable<DRArmor> dtArmor = GameEntry.DataTable.GetDataTable<DRArmor>();
-            DRArmor drArmor = dtArmor.GetDataRow(TypeId);
-            if (drArmor == null)
+            var cfgArmor = GameEntry.Luban.Tables.TbArmor.Get(TypeId);
+            if (cfgArmor == null)
             {
                 return;
             }
 
-            m_MaxHP = drArmor.MaxHP;
-            m_Defense = drArmor.Defense;
+            m_MaxHP = cfgArmor.MaxHp;
+            m_Defense = cfgArmor.Defense;
         }
 
         /// <summary>

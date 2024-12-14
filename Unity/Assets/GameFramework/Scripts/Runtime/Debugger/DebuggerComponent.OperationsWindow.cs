@@ -18,7 +18,7 @@ namespace UnityGameFramework.Runtime
                 GUILayout.Label("<b>Operations</b>");
                 GUILayout.BeginVertical("box");
                 {
-                    ObjectPoolComponent objectPoolComponent = GameEntry.GetComponent<ObjectPoolComponent>();
+                    ObjectPoolComponent objectPoolComponent = UnityGameFrameworkEntry.GetComponent<ObjectPoolComponent>();
                     if (objectPoolComponent != null)
                     {
                         if (GUILayout.Button("Object Pool Release", GUILayout.Height(30f)))
@@ -32,7 +32,7 @@ namespace UnityGameFramework.Runtime
                         }
                     }
 
-                    ResourceComponent resourceCompoent = GameEntry.GetComponent<ResourceComponent>();
+                    ResourceComponent resourceCompoent = UnityGameFrameworkEntry.GetComponent<ResourceComponent>();
                     if (resourceCompoent != null)
                     {
                         if (GUILayout.Button("Unload Unused Assets", GUILayout.Height(30f)))
@@ -48,15 +48,15 @@ namespace UnityGameFramework.Runtime
 
                     if (GUILayout.Button("Shutdown Game Framework (None)", GUILayout.Height(30f)))
                     {
-                        GameEntry.Shutdown(ShutdownType.None);
+                        UnityGameFrameworkEntry.Shutdown(ShutdownType.None);
                     }
                     if (GUILayout.Button("Shutdown Game Framework (Restart)", GUILayout.Height(30f)))
                     {
-                        GameEntry.Shutdown(ShutdownType.Restart);
+                        UnityGameFrameworkEntry.Shutdown(ShutdownType.Restart);
                     }
                     if (GUILayout.Button("Shutdown Game Framework (Quit)", GUILayout.Height(30f)))
                     {
-                        GameEntry.Shutdown(ShutdownType.Quit);
+                        UnityGameFrameworkEntry.Shutdown(ShutdownType.Quit);
                     }
                 }
                 GUILayout.EndVertical();

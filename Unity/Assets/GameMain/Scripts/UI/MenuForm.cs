@@ -39,7 +39,7 @@ namespace StarForce
                 Mode = 2,
                 Title = GameEntry.Localization.GetString("AskQuitGame.Title"),
                 Message = GameEntry.Localization.GetString("AskQuitGame.Message"),
-                OnClickConfirm = delegate (object userData) { UnityGameFramework.Runtime.GameEntry.Shutdown(ShutdownType.Quit); },
+                OnClickConfirm = delegate (object userData) { UnityGameFramework.Runtime.UnityGameFrameworkEntry.Shutdown(ShutdownType.Quit); },
             });
         }
 

@@ -178,6 +178,15 @@ namespace StarForce
         }
 
         /// <summary>
+        /// 获取定时器组件。
+        /// </summary>
+        public static TimerComponent Timer
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
         /// 获取界面组件。
         /// </summary>
         public static UIComponent UI
@@ -197,26 +206,27 @@ namespace StarForce
 
         private static void InitBuiltinComponents()
         {
-            Base = UnityGameFramework.Runtime.GameEntry.GetComponent<BaseComponent>();
-            Config = UnityGameFramework.Runtime.GameEntry.GetComponent<ConfigComponent>();
-            DataNode = UnityGameFramework.Runtime.GameEntry.GetComponent<DataNodeComponent>();
-            DataTable = UnityGameFramework.Runtime.GameEntry.GetComponent<DataTableComponent>();
-            Debugger = UnityGameFramework.Runtime.GameEntry.GetComponent<DebuggerComponent>();
-            Download = UnityGameFramework.Runtime.GameEntry.GetComponent<DownloadComponent>();
-            Entity = UnityGameFramework.Runtime.GameEntry.GetComponent<EntityComponent>();
-            Event = UnityGameFramework.Runtime.GameEntry.GetComponent<EventComponent>();
-            FileSystem = UnityGameFramework.Runtime.GameEntry.GetComponent<FileSystemComponent>();
-            Fsm = UnityGameFramework.Runtime.GameEntry.GetComponent<FsmComponent>();
-            Localization = UnityGameFramework.Runtime.GameEntry.GetComponent<LocalizationComponent>();
-            Network = UnityGameFramework.Runtime.GameEntry.GetComponent<NetworkComponent>();
-            ObjectPool = UnityGameFramework.Runtime.GameEntry.GetComponent<ObjectPoolComponent>();
-            Procedure = UnityGameFramework.Runtime.GameEntry.GetComponent<ProcedureComponent>();
-            Resource = UnityGameFramework.Runtime.GameEntry.GetComponent<ResourceComponent>();
-            Scene = UnityGameFramework.Runtime.GameEntry.GetComponent<SceneComponent>();
-            Setting = UnityGameFramework.Runtime.GameEntry.GetComponent<SettingComponent>();
-            Sound = UnityGameFramework.Runtime.GameEntry.GetComponent<SoundComponent>();
-            UI = UnityGameFramework.Runtime.GameEntry.GetComponent<UIComponent>();
-            WebRequest = UnityGameFramework.Runtime.GameEntry.GetComponent<WebRequestComponent>();
+            Base = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<BaseComponent>();
+            Config = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<ConfigComponent>();
+            DataNode = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<DataNodeComponent>();
+            DataTable = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<DataTableComponent>();
+            Debugger = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<DebuggerComponent>();
+            Download = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<DownloadComponent>();
+            Entity = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<EntityComponent>();
+            Event = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<EventComponent>();
+            FileSystem = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<FileSystemComponent>();
+            Fsm = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<FsmComponent>();
+            Localization = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<LocalizationComponent>();
+            Network = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<NetworkComponent>();
+            ObjectPool = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<ObjectPoolComponent>();
+            Procedure = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<ProcedureComponent>();
+            Resource = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<ResourceComponent>();
+            Scene = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<SceneComponent>();
+            Setting = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<SettingComponent>();
+            Sound = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<SoundComponent>();
+            Timer = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<TimerComponent>();
+            UI = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<UIComponent>();
+            WebRequest = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<WebRequestComponent>();
         }
     }
 }

@@ -52,7 +52,7 @@ namespace StarForce
                     ConfirmText = GameEntry.Localization.GetString("UpdateResourceViaCarrierDataNetwork.UpdateButton"),
                     OnClickConfirm = StartUpdateResources,
                     CancelText = GameEntry.Localization.GetString("UpdateResourceViaCarrierDataNetwork.QuitButton"),
-                    OnClickCancel = delegate (object userData) { UnityGameFramework.Runtime.GameEntry.Shutdown(ShutdownType.Quit); },
+                    OnClickCancel = delegate (object userData) { UnityGameFramework.Runtime.UnityGameFrameworkEntry.Shutdown(ShutdownType.Quit); },
                 });
 
                 return;

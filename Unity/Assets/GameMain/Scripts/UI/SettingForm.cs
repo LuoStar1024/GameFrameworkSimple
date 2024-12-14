@@ -138,7 +138,7 @@ namespace StarForce
             GameEntry.Setting.Save();
 
             GameEntry.Sound.StopMusic();
-            UnityGameFramework.Runtime.GameEntry.Shutdown(ShutdownType.Restart);
+            UnityGameFramework.Runtime.UnityGameFrameworkEntry.Shutdown(ShutdownType.Restart);
         }
 
 #if UNITY_2017_3_OR_NEWER

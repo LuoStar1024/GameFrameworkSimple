@@ -28,8 +28,8 @@ namespace StarForce
 
         private static void InitCustomComponents()
         {
-            BuiltinData = UnityGameFramework.Runtime.GameEntry.GetComponent<BuiltinDataComponent>();
-            HPBar = UnityGameFramework.Runtime.GameEntry.GetComponent<HPBarComponent>();
+            BuiltinData = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<BuiltinDataComponent>();
+            HPBar = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<HPBarComponent>();
         }
     }
 }

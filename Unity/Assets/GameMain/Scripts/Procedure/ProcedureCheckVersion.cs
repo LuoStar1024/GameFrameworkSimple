@@ -123,7 +123,7 @@ namespace StarForce
                     ConfirmText = GameEntry.Localization.GetString("ForceUpdate.UpdateButton"),
                     OnClickConfirm = GotoUpdateApp,
                     CancelText = GameEntry.Localization.GetString("ForceUpdate.QuitButton"),
-                    OnClickCancel = delegate (object userData) { UnityGameFramework.Runtime.GameEntry.Shutdown(ShutdownType.Quit); },
+                    OnClickCancel = delegate (object userData) { UnityGameFramework.Runtime.UnityGameFrameworkEntry.Shutdown(ShutdownType.Quit); },
                 });
 
                 return;

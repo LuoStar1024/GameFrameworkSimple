@@ -63,7 +63,7 @@ namespace UnityGameFramework.Runtime
 
         private void Start()
         {
-            m_ResourceComponent = GameEntry.GetComponent<ResourceComponent>();
+            m_ResourceComponent = UnityGameFrameworkEntry.GetComponent<ResourceComponent>();
             if (m_ResourceComponent == null)
             {
                 Log.Fatal("Resource component is invalid.");

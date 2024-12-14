@@ -16,7 +16,7 @@ namespace UnityGameFramework.Runtime
     /// <summary>
     /// 游戏入口。
     /// </summary>
-    public static class GameEntry
+    public static class UnityGameFrameworkEntry
     {
         private static readonly GameFrameworkLinkedList<GameFrameworkComponent> s_GameFrameworkComponents = new GameFrameworkLinkedList<GameFrameworkComponent>();
 

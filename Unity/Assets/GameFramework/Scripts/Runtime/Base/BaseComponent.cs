@@ -7,7 +7,7 @@
 
 using GameFramework;
 // using GameFramework.Localization;
-using GameFramework.Resource;
+// using GameFramework.Resource;
 using System;
 using UnityEngine;
 
@@ -87,14 +87,14 @@ namespace UnityGameFramework.Runtime
         //     }
         // }
 
-        /// <summary>
-        /// 获取或设置编辑器资源辅助器。
-        /// </summary>
-        public IResourceManager EditorResourceHelper
-        {
-            get;
-            set;
-        }
+        // /// <summary>
+        // /// 获取或设置编辑器资源辅助器。
+        // /// </summary>
+        // public IResourceManager EditorResourceHelper
+        // {
+        //     get;
+        //     set;
+        // }
 
         /// <summary>
         /// 获取或设置游戏帧率。
@@ -415,11 +415,12 @@ namespace UnityGameFramework.Runtime
                 objectPoolComponent.ReleaseAllUnused();
             }
 
-            ResourceComponent resourceCompoent = UnityGameFrameworkEntry.GetComponent<ResourceComponent>();
-            if (resourceCompoent != null)
-            {
-                resourceCompoent.ForceUnloadUnusedAssets(true);
-            }
+            // TODO
+            // ResourceComponent resourceCompoent = UnityGameFrameworkEntry.GetComponent<ResourceComponent>();
+            // if (resourceCompoent != null)
+            // {
+            //     resourceCompoent.ForceUnloadUnusedAssets(true);
+            // }
         }
     }
 }

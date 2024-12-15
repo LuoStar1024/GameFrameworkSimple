@@ -46,8 +46,8 @@ namespace StarForce
         {
             base.OnEnter(procedureOwner);
 
-            GameEntry.Event.Subscribe(LoadConfigSuccessEventArgs.EventId, OnLoadConfigSuccess);
-            GameEntry.Event.Subscribe(LoadConfigFailureEventArgs.EventId, OnLoadConfigFailure);
+            // GameEntry.Event.Subscribe(LoadConfigSuccessEventArgs.EventId, OnLoadConfigSuccess);
+            // GameEntry.Event.Subscribe(LoadConfigFailureEventArgs.EventId, OnLoadConfigFailure);
             // TODO
             // GameEntry.Event.Subscribe(LoadDataTableSuccessEventArgs.EventId, OnLoadDataTableSuccess);
             // GameEntry.Event.Subscribe(LoadDataTableFailureEventArgs.EventId, OnLoadDataTableFailure);
@@ -61,8 +61,8 @@ namespace StarForce
 
         protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
         {
-            GameEntry.Event.Unsubscribe(LoadConfigSuccessEventArgs.EventId, OnLoadConfigSuccess);
-            GameEntry.Event.Unsubscribe(LoadConfigFailureEventArgs.EventId, OnLoadConfigFailure);
+            // GameEntry.Event.Unsubscribe(LoadConfigSuccessEventArgs.EventId, OnLoadConfigSuccess);
+            // GameEntry.Event.Unsubscribe(LoadConfigFailureEventArgs.EventId, OnLoadConfigFailure);
             // TODO
             // GameEntry.Event.Unsubscribe(LoadDataTableSuccessEventArgs.EventId, OnLoadDataTableSuccess);
             // GameEntry.Event.Unsubscribe(LoadDataTableFailureEventArgs.EventId, OnLoadDataTableFailure);
@@ -84,7 +84,7 @@ namespace StarForce
                 }
             }
 
-            procedureOwner.SetData<VarInt32>("NextSceneId", GameEntry.Config.GetInt("Scene.Menu"));
+            // procedureOwner.SetData<VarInt32>("NextSceneId", GameEntry.Config.GetInt("Scene.Menu"));
             ChangeState<ProcedureChangeScene>(procedureOwner);
         }
 
@@ -110,7 +110,7 @@ namespace StarForce
         {
             string configAssetName = AssetUtility.GetConfigAsset(configName, false);
             m_LoadedFlag.Add(configAssetName, false);
-            GameEntry.Config.ReadData(configAssetName, this);
+            // GameEntry.Config.ReadData(configAssetName, this);
         }
 
         private void LoadDataTable(string dataTableName)
@@ -147,25 +147,25 @@ namespace StarForce
 
         private void OnLoadConfigSuccess(object sender, GameEventArgs e)
         {
-            LoadConfigSuccessEventArgs ne = (LoadConfigSuccessEventArgs)e;
-            if (ne.UserData != this)
-            {
-                return;
-            }
-
-            m_LoadedFlag[ne.ConfigAssetName] = true;
-            Log.Info("Load config '{0}' OK.", ne.ConfigAssetName);
+            // LoadConfigSuccessEventArgs ne = (LoadConfigSuccessEventArgs)e;
+            // if (ne.UserData != this)
+            // {
+            //     return;
+            // }
+            //
+            // m_LoadedFlag[ne.ConfigAssetName] = true;
+            // Log.Info("Load config '{0}' OK.", ne.ConfigAssetName);
         }
 
         private void OnLoadConfigFailure(object sender, GameEventArgs e)
         {
-            LoadConfigFailureEventArgs ne = (LoadConfigFailureEventArgs)e;
-            if (ne.UserData != this)
-            {
-                return;
-            }
-
-            Log.Error("Can not load config '{0}' from '{1}' with error message '{2}'.", ne.ConfigAssetName, ne.ConfigAssetName, ne.ErrorMessage);
+            // LoadConfigFailureEventArgs ne = (LoadConfigFailureEventArgs)e;
+            // if (ne.UserData != this)
+            // {
+            //     return;
+            // }
+            //
+            // Log.Error("Can not load config '{0}' from '{1}' with error message '{2}'.", ne.ConfigAssetName, ne.ConfigAssetName, ne.ErrorMessage);
         }
 
         // private void OnLoadDataTableSuccess(object sender, GameEventArgs e)

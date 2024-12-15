@@ -105,14 +105,14 @@ namespace StarForce
             private set;
         }
 
-        /// <summary>
-        /// 获取网络组件。
-        /// </summary>
-        public static NetworkComponent Network
-        {
-            get;
-            private set;
-        }
+        // /// <summary>
+        // /// 获取网络组件。
+        // /// </summary>
+        // public static NetworkComponent Network
+        // {
+        //     get;
+        //     private set;
+        // }
 
         /// <summary>
         /// 获取对象池组件。
@@ -207,7 +207,7 @@ namespace StarForce
             FileSystem = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<FileSystemComponent>();
             Fsm = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<FsmComponent>();
             Localization = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<LocalizationComponent>();
-            Network = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<NetworkComponent>();
+            // Network = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<NetworkComponent>();
             ObjectPool = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<ObjectPoolComponent>();
             Procedure = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<ProcedureComponent>();
             Resource = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<ResourceComponent>();

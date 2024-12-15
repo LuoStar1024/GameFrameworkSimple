@@ -15,7 +15,7 @@ namespace StarForce
     /// </summary>
     public partial class GameEntry : MonoBehaviour
     {
-        public static LubanComponent Luban
+        public static ConfigComponent Config
         {
             get;
             private set;
@@ -35,7 +35,7 @@ namespace StarForce
 
         private static void InitCustomComponents()
         {
-            Luban = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<LubanComponent>();
+            Config = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<ConfigComponent>();
             BuiltinData = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<BuiltinDataComponent>();
             HPBar = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<HPBarComponent>();
         }

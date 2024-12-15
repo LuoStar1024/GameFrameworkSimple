@@ -50,7 +50,7 @@ namespace StarForce
 
         public static bool HasUIForm(this UIComponent uiComponent, int uiFormId, string uiGroupName = null)
         {
-            var cfgUIForm = GameEntry.Luban.Tables.TbUIForm.Get(uiFormId);
+            var cfgUIForm = GameEntry.Config.Tables.TbUIForm.Get(uiFormId);
             if (cfgUIForm == null)
             {
                 return false;
@@ -78,7 +78,7 @@ namespace StarForce
 
         public static UGuiForm GetUIForm(this UIComponent uiComponent, int uiFormId, string uiGroupName = null)
         {
-            var cfgUIForm = GameEntry.Luban.Tables.TbUIForm.Get(uiFormId);
+            var cfgUIForm = GameEntry.Config.Tables.TbUIForm.Get(uiFormId);
             if (cfgUIForm == null)
             {
                 return null;
@@ -124,7 +124,7 @@ namespace StarForce
 
         public static int? OpenUIForm(this UIComponent uiComponent, int uiFormId, object userData = null)
         {
-            var cfgUIForm = GameEntry.Luban.Tables.TbUIForm.Get(uiFormId);
+            var cfgUIForm = GameEntry.Config.Tables.TbUIForm.Get(uiFormId);
             if (cfgUIForm == null)
             {
                 Log.Warning("Can not load UI form '{0}' from data table.", uiFormId.ToString());

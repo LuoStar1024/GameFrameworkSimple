@@ -58,7 +58,7 @@ namespace StarForce
 
             int sceneId = procedureOwner.GetData<VarInt32>("NextSceneId");
             m_ChangeToMenu = sceneId == MenuSceneId;
-            var cfgScene = GameEntry.Luban.Tables.TbScene.Get(sceneId);
+            var cfgScene = GameEntry.Config.Tables.TbScene.Get(sceneId);
             if (cfgScene == null)
             {
                 Log.Warning("Can not load scene '{0}' from data table.", sceneId.ToString());

@@ -38,7 +38,7 @@ namespace StarForce
         public AircraftData(int entityId, int typeId, CampType camp)
             : base(entityId, typeId, camp)
         {
-            var cfgAircraft = GameEntry.Luban.Tables.TbAircraft.Get(TypeId);
+            var cfgAircraft = GameEntry.Config.Tables.TbAircraft.Get(TypeId);
             if (cfgAircraft == null)
             {
                 return;

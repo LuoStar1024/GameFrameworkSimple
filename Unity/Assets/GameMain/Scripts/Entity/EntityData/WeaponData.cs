@@ -31,7 +31,7 @@ namespace StarForce
         public WeaponData(int entityId, int typeId, int ownerId, CampType ownerCamp)
             : base(entityId, typeId, ownerId, ownerCamp)
         {
-            var cfgWeapon = GameEntry.Luban.Tables.TbWeapon.Get(TypeId);
+            var cfgWeapon = GameEntry.Config.Tables.TbWeapon.Get(TypeId);
             if (cfgWeapon == null)
             {
                 return;

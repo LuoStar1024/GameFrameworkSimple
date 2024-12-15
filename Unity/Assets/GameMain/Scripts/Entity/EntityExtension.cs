@@ -87,7 +87,7 @@ namespace StarForce
                 return;
             }
 
-            var cfgEntity = GameEntry.Luban.Tables.TbEntity.Get(data.TypeId);
+            var cfgEntity = GameEntry.Config.Tables.TbEntity.Get(data.TypeId);
             if (cfgEntity == null)
             {
                 Log.Warning("Can not load entity id '{0}' from data table.", data.TypeId.ToString());

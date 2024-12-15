@@ -20,7 +20,7 @@ namespace StarForce
         {
             soundComponent.StopMusic();
 
-            var cfgMusic = GameEntry.Luban.Tables.TbMusic.Get(musicId);
+            var cfgMusic = GameEntry.Config.Tables.TbMusic.Get(musicId);
             if (cfgMusic == null)
             {
                 Log.Warning("Can not load music '{0}' from data table.", musicId.ToString());
@@ -50,7 +50,7 @@ namespace StarForce
 
         public static int? PlaySound(this SoundComponent soundComponent, int soundId, Entity bindingEntity = null, object userData = null)
         {
-            var cfgSound = GameEntry.Luban.Tables.TbSound.Get(soundId);
+            var cfgSound = GameEntry.Config.Tables.TbSound.Get(soundId);
             if (cfgSound == null)
             {
                 Log.Warning("Can not load sound '{0}' from data table.", soundId.ToString());
@@ -67,7 +67,7 @@ namespace StarForce
 
         public static int? PlayUISound(this SoundComponent soundComponent, int uiSoundId, object userData = null)
         {
-            var cfgUISound = GameEntry.Luban.Tables.TbUISound.Get(uiSoundId);
+            var cfgUISound = GameEntry.Config.Tables.TbUISound.Get(uiSoundId);
             if (cfgUISound == null)
             {
                 Log.Warning("Can not load UI sound '{0}' from data table.", uiSoundId.ToString());

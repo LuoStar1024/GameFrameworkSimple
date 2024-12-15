@@ -19,7 +19,7 @@ namespace StarForce
         public ThrusterData(int entityId, int typeId, int ownerId, CampType ownerCamp)
             : base(entityId, typeId, ownerId, ownerCamp)
         {
-            var cfgThruster = GameEntry.Luban.Tables.TbThruster.Get(TypeId);
+            var cfgThruster = GameEntry.Config.Tables.TbThruster.Get(TypeId);
             if (cfgThruster == null)
             {
                 return;

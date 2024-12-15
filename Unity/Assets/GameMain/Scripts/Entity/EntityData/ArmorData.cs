@@ -22,7 +22,7 @@ namespace StarForce
         public ArmorData(int entityId, int typeId, int ownerId, CampType ownerCamp)
             : base(entityId, typeId, ownerId, ownerCamp)
         {
-            var cfgArmor = GameEntry.Luban.Tables.TbArmor.Get(TypeId);
+            var cfgArmor = GameEntry.Config.Tables.TbArmor.Get(TypeId);
             if (cfgArmor == null)
             {
                 return;

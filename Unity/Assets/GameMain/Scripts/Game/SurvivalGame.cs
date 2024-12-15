@@ -30,7 +30,7 @@ namespace StarForce
             if (m_ElapseSeconds >= 1f)
             {
                 m_ElapseSeconds = 0f;
-                var tbAsteroid = GameEntry.Luban.Tables.TbAsteroid;
+                var tbAsteroid = GameEntry.Config.Tables.TbAsteroid;
                 float randomPositionX = SceneBackground.EnemySpawnBoundary.bounds.min.x + SceneBackground.EnemySpawnBoundary.bounds.size.x * (float)Utility.Random.GetRandomDouble();
                 float randomPositionZ = SceneBackground.EnemySpawnBoundary.bounds.min.z + SceneBackground.EnemySpawnBoundary.bounds.size.z * (float)Utility.Random.GetRandomDouble();
                 GameEntry.Entity.ShowAsteroid(new AsteroidData(GameEntry.Entity.GenerateSerialId(), 60000 + Utility.Random.GetRandom(tbAsteroid.DataList.Count))

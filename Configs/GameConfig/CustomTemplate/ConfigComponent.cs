@@ -8,7 +8,7 @@ namespace GameProto
     /// <summary>
     /// 配置加载器。
     /// </summary>
-    public class LubanComponent : GameFrameworkComponent
+    public class ConfigComponent : GameFrameworkComponent
     {
         private enum CfgType
         {

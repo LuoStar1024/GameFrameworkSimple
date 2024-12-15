@@ -35,7 +35,7 @@ namespace StarForce
         public AsteroidData(int entityId, int typeId)
             : base(entityId, typeId, CampType.Neutral)
         {
-            var cfgAsteroid = GameEntry.Luban.Tables.TbAsteroid.Get(TypeId);
+            var cfgAsteroid = GameEntry.Config.Tables.TbAsteroid.Get(TypeId);
             if (cfgAsteroid == null)
             {
                 return;

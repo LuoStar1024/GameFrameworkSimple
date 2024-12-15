@@ -27,8 +27,8 @@ namespace UnityGameFramework.Editor
 
             if (IsPrefabInHierarchy(t.gameObject))
             {
-                EditorGUILayout.LabelField("Event Handler Count", t.EventHandlerCount.ToString());
-                EditorGUILayout.LabelField("Event Count", t.EventCount.ToString());
+                // EditorGUILayout.LabelField("Event Handler Count", t.EventHandlerCount.ToString());
+                // EditorGUILayout.LabelField("Event Count", t.EventCount.ToString());
             }
 
             Repaint();

@@ -186,14 +186,14 @@ namespace StarForce
             private set;
         }
 
-        /// <summary>
-        /// 获取网络组件。
-        /// </summary>
-        public static WebRequestComponent WebRequest
-        {
-            get;
-            private set;
-        }
+        // /// <summary>
+        // /// 获取网络组件。
+        // /// </summary>
+        // public static WebRequestComponent WebRequest
+        // {
+        //     get;
+        //     private set;
+        // }
 
         private static void InitBuiltinComponents()
         {
@@ -216,7 +216,7 @@ namespace StarForce
             Sound = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<SoundComponent>();
             Timer = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<TimerComponent>();
             UI = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<UIComponent>();
-            WebRequest = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<WebRequestComponent>();
+            // WebRequest = UnityGameFramework.Runtime.UnityGameFrameworkEntry.GetComponent<WebRequestComponent>();
         }
     }
 }

@@ -36,17 +36,17 @@ namespace StarForce
             m_NeedUpdateVersion = false;
             m_VersionInfo = null;
 
-            GameEntry.Event.Subscribe(WebRequestSuccessEventArgs.EventId, OnWebRequestSuccess);
-            GameEntry.Event.Subscribe(WebRequestFailureEventArgs.EventId, OnWebRequestFailure);
-
-            // 向服务器请求版本信息
-            GameEntry.WebRequest.AddWebRequest(Utility.Text.Format(GameEntry.BuiltinData.BuildInfo.CheckVersionUrl, GetPlatformPath()), this);
+            // GameEntry.Event.Subscribe(WebRequestSuccessEventArgs.EventId, OnWebRequestSuccess);
+            // GameEntry.Event.Subscribe(WebRequestFailureEventArgs.EventId, OnWebRequestFailure);
+            //
+            // // 向服务器请求版本信息
+            // GameEntry.WebRequest.AddWebRequest(Utility.Text.Format(GameEntry.BuiltinData.BuildInfo.CheckVersionUrl, GetPlatformPath()), this);
         }
 
         protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
         {
-            GameEntry.Event.Unsubscribe(WebRequestSuccessEventArgs.EventId, OnWebRequestSuccess);
-            GameEntry.Event.Unsubscribe(WebRequestFailureEventArgs.EventId, OnWebRequestFailure);
+            // GameEntry.Event.Unsubscribe(WebRequestSuccessEventArgs.EventId, OnWebRequestSuccess);
+            // GameEntry.Event.Unsubscribe(WebRequestFailureEventArgs.EventId, OnWebRequestFailure);
 
             base.OnLeave(procedureOwner, isShutdown);
         }
@@ -94,57 +94,57 @@ namespace StarForce
 
         private void OnWebRequestSuccess(object sender, GameEventArgs e)
         {
-            WebRequestSuccessEventArgs ne = (WebRequestSuccessEventArgs)e;
-            if (ne.UserData != this)
-            {
-                return;
-            }
-
-            // 解析版本信息
-            byte[] versionInfoBytes = ne.GetWebResponseBytes();
-            string versionInfoString = Utility.Converter.GetString(versionInfoBytes);
-            m_VersionInfo = Utility.Json.ToObject<VersionInfo>(versionInfoString);
-            if (m_VersionInfo == null)
-            {
-                Log.Error("Parse VersionInfo failure.");
-                return;
-            }
-
-            Log.Info("Latest game version is '{0} ({1})', local game version is '{2} ({3})'.", m_VersionInfo.LatestGameVersion, m_VersionInfo.InternalGameVersion.ToString(), Version.GameVersion, Version.InternalGameVersion.ToString());
-
-            if (m_VersionInfo.ForceUpdateGame)
-            {
-                // 需要强制更新游戏应用
-                GameEntry.UI.OpenDialog(new DialogParams
-                {
-                    Mode = 2,
-                    Title = GameEntry.Localization.GetString("ForceUpdate.Title"),
-                    Message = GameEntry.Localization.GetString("ForceUpdate.Message"),
-                    ConfirmText = GameEntry.Localization.GetString("ForceUpdate.UpdateButton"),
-                    OnClickConfirm = GotoUpdateApp,
-                    CancelText = GameEntry.Localization.GetString("ForceUpdate.QuitButton"),
-                    OnClickCancel = delegate (object userData) { UnityGameFramework.Runtime.UnityGameFrameworkEntry.Shutdown(ShutdownType.Quit); },
-                });
-
-                return;
-            }
-
-            // 设置资源更新下载地址
-            GameEntry.Resource.UpdatePrefixUri = Utility.Path.GetRegularPath(m_VersionInfo.UpdatePrefixUri);
-
-            m_CheckVersionComplete = true;
-            m_NeedUpdateVersion = GameEntry.Resource.CheckVersionList(m_VersionInfo.InternalResourceVersion) == CheckVersionListResult.NeedUpdate;
+            // WebRequestSuccessEventArgs ne = (WebRequestSuccessEventArgs)e;
+            // if (ne.UserData != this)
+            // {
+            //     return;
+            // }
+            //
+            // // 解析版本信息
+            // byte[] versionInfoBytes = ne.GetWebResponseBytes();
+            // string versionInfoString = Utility.Converter.GetString(versionInfoBytes);
+            // m_VersionInfo = Utility.Json.ToObject<VersionInfo>(versionInfoString);
+            // if (m_VersionInfo == null)
+            // {
+            //     Log.Error("Parse VersionInfo failure.");
+            //     return;
+            // }
+            //
+            // Log.Info("Latest game version is '{0} ({1})', local game version is '{2} ({3})'.", m_VersionInfo.LatestGameVersion, m_VersionInfo.InternalGameVersion.ToString(), Version.GameVersion, Version.InternalGameVersion.ToString());
+            //
+            // if (m_VersionInfo.ForceUpdateGame)
+            // {
+            //     // 需要强制更新游戏应用
+            //     GameEntry.UI.OpenDialog(new DialogParams
+            //     {
+            //         Mode = 2,
+            //         Title = GameEntry.Localization.GetString("ForceUpdate.Title"),
+            //         Message = GameEntry.Localization.GetString("ForceUpdate.Message"),
+            //         ConfirmText = GameEntry.Localization.GetString("ForceUpdate.UpdateButton"),
+            //         OnClickConfirm = GotoUpdateApp,
+            //         CancelText = GameEntry.Localization.GetString("ForceUpdate.QuitButton"),
+            //         OnClickCancel = delegate (object userData) { UnityGameFramework.Runtime.UnityGameFrameworkEntry.Shutdown(ShutdownType.Quit); },
+            //     });
+            //
+            //     return;
+            // }
+            //
+            // // 设置资源更新下载地址
+            // GameEntry.Resource.UpdatePrefixUri = Utility.Path.GetRegularPath(m_VersionInfo.UpdatePrefixUri);
+            //
+            // m_CheckVersionComplete = true;
+            // m_NeedUpdateVersion = GameEntry.Resource.CheckVersionList(m_VersionInfo.InternalResourceVersion) == CheckVersionListResult.NeedUpdate;
         }
 
         private void OnWebRequestFailure(object sender, GameEventArgs e)
         {
-            WebRequestFailureEventArgs ne = (WebRequestFailureEventArgs)e;
-            if (ne.UserData != this)
-            {
-                return;
-            }
-
-            Log.Warning("Check version failure, error message is '{0}'.", ne.ErrorMessage);
+            // WebRequestFailureEventArgs ne = (WebRequestFailureEventArgs)e;
+            // if (ne.UserData != this)
+            // {
+            //     return;
+            // }
+            //
+            // Log.Warning("Check version failure, error message is '{0}'.", ne.ErrorMessage);
         }
 
         private string GetPlatformPath()

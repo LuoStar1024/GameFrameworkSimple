@@ -1,4 +1,5 @@
 using Luban;
+using SimpleJSON;
 
 {{namespace_with_grace_begin __namespace}}
 public partial class {{__name}}
@@ -18,7 +19,7 @@ public partial class {{__name}}
         {
             if (m_{{table.name}} == null)
             {
-                m_{{table.name}} = new {{table.full_name}}(defaultLoader("{{table.output_data_file}}"));
+                m_{{table.name}} = new {{table.full_name}}(byteBufLoader("{{table.output_data_file}}"));
                 m_{{table.name}}.ResolveRef(this);
             }
             return m_{{table.name}};
@@ -33,9 +34,16 @@ public partial class {{__name}}
 
     #endregion
 
-    System.Func<string, ByteBuf> defaultLoader;
+    System.Func<string, ByteBuf> byteBufLoader;
+    System.Func<string, JSONNode> jsonLoader;
 
     public {{__name}}(System.Func<string, ByteBuf> loader)
+    {
+        SetDefaultLoader(loader);
+        Init();
+    }
+
+    public {{__name}}(System.Func<string, JSONNode> loader)
     {
         SetDefaultLoader(loader);
         Init();
@@ -43,8 +51,14 @@ public partial class {{__name}}
     
     public void SetDefaultLoader(System.Func<string, ByteBuf> loader)
     {
-        defaultLoader = null;
-        defaultLoader = loader;
+        byteBufLoader = null;
+        byteBufLoader = loader;
+    }
+
+    public void SetDefaultLoader(System.Func<string, JSONNode> loader)
+    {
+        jsonLoader = null;
+        jsonLoader = loader;
     }
 
     //public partial void Init();

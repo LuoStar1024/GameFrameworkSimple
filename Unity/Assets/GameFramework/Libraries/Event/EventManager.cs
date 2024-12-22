@@ -14,48 +14,14 @@ namespace GameFramework.Event
     /// </summary>
     internal sealed class EventManager : GameFrameworkModule, IEventManager
     {
-        private readonly EventPool<GameEventArgs> m_EventPool;
+        private readonly EventPool m_EventPool;
 
         /// <summary>
         /// 初始化事件管理器的新实例。
         /// </summary>
         public EventManager()
         {
-            m_EventPool = new EventPool<GameEventArgs>(EventPoolMode.AllowNoHandler | EventPoolMode.AllowMultiHandler);
-        }
-
-        /// <summary>
-        /// 获取事件处理函数的数量。
-        /// </summary>
-        public int EventHandlerCount
-        {
-            get
-            {
-                return m_EventPool.EventHandlerCount;
-            }
-        }
-
-        /// <summary>
-        /// 获取事件数量。
-        /// </summary>
-        public int EventCount
-        {
-            get
-            {
-                return m_EventPool.EventCount;
-            }
-        }
-
-        /// <summary>
-        /// 获取游戏框架模块优先级。
-        /// </summary>
-        /// <remarks>优先级较高的模块会优先轮询，并且关闭操作会后进行。</remarks>
-        internal override int Priority
-        {
-            get
-            {
-                return 7;
-            }
+            m_EventPool = new EventPool();
         }
 
         /// <summary>
@@ -77,73 +43,291 @@ namespace GameFramework.Event
         }
 
         /// <summary>
-        /// 获取事件处理函数的数量。
+        /// 订阅事件处理函数。
         /// </summary>
-        /// <param name="id">事件类型编号。</param>
-        /// <returns>事件处理函数的数量。</returns>
-        public int Count(int id)
+        /// <param name="eventType">事件类型编号。</param>
+        /// <param name="handler">要订阅的事件处理函数。</param>
+        /// <returns>是否订阅成功。</returns>
+        public bool Subscribe(int eventType, GameFrameworkAction handler)
         {
-            return m_EventPool.Count(id);
-        }
-
-        /// <summary>
-        /// 检查是否存在事件处理函数。
-        /// </summary>
-        /// <param name="id">事件类型编号。</param>
-        /// <param name="handler">要检查的事件处理函数。</param>
-        /// <returns>是否存在事件处理函数。</returns>
-        public bool Check(int id, EventHandler<GameEventArgs> handler)
-        {
-            return m_EventPool.Check(id, handler);
+            return m_EventPool.Subscribe(eventType, handler);
         }
 
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
-        /// <param name="id">事件类型编号。</param>
+        /// <param name="eventType">事件类型。</param>
         /// <param name="handler">要订阅的事件处理函数。</param>
-        public void Subscribe(int id, EventHandler<GameEventArgs> handler)
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <returns>是否订阅成功。</returns>
+        public bool Subscribe<TArg1>(int eventType, GameFrameworkAction<TArg1> handler)
         {
-            m_EventPool.Subscribe(id, handler);
+            return m_EventPool.Subscribe(eventType, handler);
+        }
+
+        /// <summary>
+        /// 订阅事件处理函数。
+        /// </summary>
+        /// <param name="eventType">事件类型。</param>
+        /// <param name="handler">要订阅的事件处理函数。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数1类型。</typeparam>
+        /// <returns>是否订阅成功。</returns>
+        public bool Subscribe<TArg1, TArg2>(int eventType, GameFrameworkAction<TArg1, TArg2> handler)
+        {
+            return m_EventPool.Subscribe(eventType, handler);
+        }
+
+        /// <summary>
+        /// 订阅事件处理函数。
+        /// </summary>
+        /// <param name="eventType">事件类型。</param>
+        /// <param name="handler">要订阅的事件处理函数。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <returns>是否订阅成功。</returns>
+        public bool Subscribe<TArg1, TArg2, TArg3>(int eventType, GameFrameworkAction<TArg1, TArg2, TArg3> handler)
+        {
+            return m_EventPool.Subscribe(eventType, handler);
+        }
+
+        /// <summary>
+        /// 订阅事件处理函数。
+        /// </summary>
+        /// <param name="eventType">事件类型。</param>
+        /// <param name="handler">要订阅的事件处理函数。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <returns>是否订阅成功。</returns>
+        public bool Subscribe<TArg1, TArg2, TArg3, TArg4>(int eventType,
+            GameFrameworkAction<TArg1, TArg2, TArg3, TArg4> handler)
+        {
+            return m_EventPool.Subscribe(eventType, handler);
+        }
+
+        /// <summary>
+        /// 订阅事件处理函数。
+        /// </summary>
+        /// <param name="eventType">事件类型。</param>
+        /// <param name="handler">要订阅的事件处理函数。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        /// <returns>是否订阅成功。</returns>
+        public bool Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5>(int eventType,
+            GameFrameworkAction<TArg1, TArg2, TArg3, TArg4, TArg5> handler)
+        {
+            return m_EventPool.Subscribe(eventType, handler);
+        }
+
+        /// <summary>
+        /// 订阅事件处理函数。
+        /// </summary>
+        /// <param name="eventType">事件类型。</param>
+        /// <param name="handler">要订阅的事件处理函数。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        /// <typeparam name="TArg6">事件参数6类型。</typeparam>
+        /// <returns>是否订阅成功。</returns>
+        public bool Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int eventType,
+            GameFrameworkAction<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6> handler)
+        {
+            return m_EventPool.Subscribe(eventType, handler);
         }
 
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
-        /// <param name="id">事件类型编号。</param>
+        /// <param name="eventType">事件类型。</param>
         /// <param name="handler">要取消订阅的事件处理函数。</param>
-        public void Unsubscribe(int id, EventHandler<GameEventArgs> handler)
+        /// <returns>是否订阅成功。</returns>
+        public void Unsubscribe(int eventType, GameFrameworkAction handler)
         {
-            m_EventPool.Unsubscribe(id, handler);
+            m_EventPool.Unsubscribe(eventType, handler);
         }
 
         /// <summary>
-        /// 设置默认事件处理函数。
+        /// 取消订阅事件处理函数。
         /// </summary>
-        /// <param name="handler">要设置的默认事件处理函数。</param>
-        public void SetDefaultHandler(EventHandler<GameEventArgs> handler)
+        /// <param name="eventType">事件类型。</param>
+        /// <param name="handler">事件处理回调。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <returns>是否订阅成功。</returns>
+        public void Unsubscribe<TArg1>(int eventType, GameFrameworkAction<TArg1> handler)
         {
-            m_EventPool.SetDefaultHandler(handler);
+            m_EventPool.Unsubscribe(eventType, handler);
         }
 
         /// <summary>
-        /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
+        /// 取消订阅事件处理函数。
         /// </summary>
-        /// <param name="sender">事件源。</param>
-        /// <param name="e">事件参数。</param>
-        public void Fire(object sender, GameEventArgs e)
+        /// <param name="eventType">事件类型。</param>
+        /// <param name="handler">事件处理回调。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数1类型。</typeparam>
+        /// <returns>是否订阅成功。</returns>
+        public void Unsubscribe<TArg1, TArg2>(int eventType, GameFrameworkAction<TArg1, TArg2> handler)
         {
-            m_EventPool.Fire(sender, e);
+            m_EventPool.Unsubscribe(eventType, handler);
         }
 
         /// <summary>
-        /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
+        /// 取消订阅事件处理函数。
         /// </summary>
-        /// <param name="sender">事件源。</param>
-        /// <param name="e">事件参数。</param>
-        public void FireNow(object sender, GameEventArgs e)
+        /// <param name="eventType">事件类型。</param>
+        /// <param name="handler">事件处理回调。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <returns>是否订阅成功。</returns>
+        public void Unsubscribe<TArg1, TArg2, TArg3>(int eventType, GameFrameworkAction<TArg1, TArg2, TArg3> handler)
         {
-            m_EventPool.FireNow(sender, e);
+            m_EventPool.Unsubscribe(eventType, handler);
+        }
+
+        /// <summary>
+        /// 取消订阅事件处理函数。
+        /// </summary>
+        /// <param name="eventType">事件类型。</param>
+        /// <param name="handler">事件处理回调。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <returns>是否订阅成功。</returns>
+        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4>(int eventType,
+            GameFrameworkAction<TArg1, TArg2, TArg3, TArg4> handler)
+        {
+            m_EventPool.Unsubscribe(eventType, handler);
+        }
+
+        /// <summary>
+        /// 取消订阅事件处理函数。
+        /// </summary>
+        /// <param name="eventType">事件类型。</param>
+        /// <param name="handler">事件处理回调。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        /// <returns>是否订阅成功。</returns>
+        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5>(int eventType,
+            GameFrameworkAction<TArg1, TArg2, TArg3, TArg4, TArg5> handler)
+        {
+            m_EventPool.Unsubscribe(eventType, handler);
+        }
+
+        /// <summary>
+        /// 取消订阅事件处理函数。
+        /// </summary>
+        /// <param name="eventType">事件类型。</param>
+        /// <param name="handler">事件处理回调。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        /// <typeparam name="TArg6">事件参数6类型。</typeparam>
+        /// <returns>是否订阅成功。</returns>
+        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int eventType,
+            GameFrameworkAction<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6> handler)
+        {
+            m_EventPool.Unsubscribe(eventType, handler);
+        }
+
+        /// <summary>
+        /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。。
+        /// </summary>
+        /// <param name="eventType">事件类型。</param>
+        public void FireNow(int eventType)
+        {
+            m_EventPool.FireNow(eventType);
+        }
+
+        /// <summary>
+        /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。。
+        /// </summary>
+        /// <param name="eventType">事件类型。</param>
+        /// <param name="arg1">事件参数1类型。</param>
+        public void FireNow<TArg1>(int eventType, TArg1 arg1)
+        {
+            m_EventPool.FireNow(eventType,arg1);
+        }
+
+        /// <summary>
+        /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。。
+        /// </summary>
+        /// <param name="eventType">事件类型。</param>
+        /// <param name="arg1">事件参数1类型。</param>
+        /// <param name="arg2">事件参数2类型。</param>
+        public void FireNow<TArg1, TArg2>(int eventType, TArg1 arg1, TArg2 arg2)
+        {
+            m_EventPool.FireNow(eventType,arg1, arg2);
+        }
+
+        /// <summary>
+        /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。。
+        /// </summary>
+        /// <param name="eventType">事件类型。</param>
+        /// <param name="arg1">事件参数1类型。</param>
+        /// <param name="arg2">事件参数2类型。</param>
+        /// <param name="arg3">事件参数3类型。</param>
+        public void FireNow<TArg1, TArg2, TArg3>(int eventType, TArg1 arg1, TArg2 arg2, TArg3 arg3)
+        {
+            m_EventPool.FireNow(eventType,arg1, arg2, arg3);
+        }
+
+        /// <summary>
+        /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。。
+        /// </summary>
+        /// <param name="eventType">事件类型。</param>
+        /// <param name="arg1">事件参数1类型。</param>
+        /// <param name="arg2">事件参数2类型。</param>
+        /// <param name="arg3">事件参数3类型。</param>
+        /// <param name="arg4">事件参数4类型。</param>
+        public void FireNow<TArg1, TArg2, TArg3, TArg4>(int eventType, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4)
+        {
+            m_EventPool.FireNow(eventType,arg1, arg2, arg3, arg4);
+        }
+
+        /// <summary>
+        /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。。
+        /// </summary>
+        /// <param name="eventType">事件类型。</param>
+        /// <param name="arg1">事件参数1类型。</param>
+        /// <param name="arg2">事件参数2类型。</param>
+        /// <param name="arg3">事件参数3类型。</param>
+        /// <param name="arg4">事件参数4类型。</param>
+        /// <param name="arg5">事件参数5类型。</param>
+        public void FireNow<TArg1, TArg2, TArg3, TArg4, TArg5>(int eventType, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4,
+            TArg5 arg5)
+        {
+            m_EventPool.FireNow(eventType,arg1, arg2, arg3, arg4, arg5);
+        }
+
+        /// <summary>
+        /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。。
+        /// </summary>
+        /// <param name="eventType">事件类型。</param>
+        /// <param name="arg1">事件参数1类型。</param>
+        /// <param name="arg2">事件参数2类型。</param>
+        /// <param name="arg3">事件参数3类型。</param>
+        /// <param name="arg4">事件参数4类型。</param>
+        /// <param name="arg5">事件参数5类型。</param>
+        /// <param name="arg6">事件参数6类型。</param>
+        public void FireNow<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int eventType, TArg1 arg1, TArg2 arg2, TArg3 arg3,
+            TArg4 arg4, TArg5 arg5, TArg6 arg6)
+        {
+            m_EventPool.FireNow(eventType,arg1, arg2, arg3, arg4, arg5, arg6);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         protected virtual void Awake()
         {
-            GameEntry.RegisterComponent(this);
+            UnityGameFrameworkEntry.RegisterComponent(this);
         }
     }
 }

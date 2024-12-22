@@ -6,8 +6,8 @@
 //------------------------------------------------------------
 
 using GameFramework;
-using GameFramework.Localization;
-using GameFramework.Resource;
+// using GameFramework.Localization;
+// using GameFramework.Resource;
 using System;
 using UnityEngine;
 
@@ -27,8 +27,8 @@ namespace UnityGameFramework.Runtime
         [SerializeField]
         private bool m_EditorResourceMode = true;
 
-        [SerializeField]
-        private Language m_EditorLanguage = Language.Unspecified;
+        // [SerializeField]
+        // private Language m_EditorLanguage = Language.Unspecified;
 
         [SerializeField]
         private string m_TextHelperTypeName = "UnityGameFramework.Runtime.DefaultTextHelper";
@@ -72,29 +72,29 @@ namespace UnityGameFramework.Runtime
             }
         }
 
-        /// <summary>
-        /// 获取或设置编辑器语言（仅编辑器内有效）。
-        /// </summary>
-        public Language EditorLanguage
-        {
-            get
-            {
-                return m_EditorLanguage;
-            }
-            set
-            {
-                m_EditorLanguage = value;
-            }
-        }
+        // /// <summary>
+        // /// 获取或设置编辑器语言（仅编辑器内有效）。
+        // /// </summary>
+        // public Language EditorLanguage
+        // {
+        //     get
+        //     {
+        //         return m_EditorLanguage;
+        //     }
+        //     set
+        //     {
+        //         m_EditorLanguage = value;
+        //     }
+        // }
 
-        /// <summary>
-        /// 获取或设置编辑器资源辅助器。
-        /// </summary>
-        public IResourceManager EditorResourceHelper
-        {
-            get;
-            set;
-        }
+        // /// <summary>
+        // /// 获取或设置编辑器资源辅助器。
+        // /// </summary>
+        // public IResourceManager EditorResourceHelper
+        // {
+        //     get;
+        //     set;
+        // }
 
         /// <summary>
         /// 获取或设置游戏帧率。
@@ -409,17 +409,18 @@ namespace UnityGameFramework.Runtime
         {
             Log.Info("Low memory reported...");
 
-            ObjectPoolComponent objectPoolComponent = GameEntry.GetComponent<ObjectPoolComponent>();
+            ObjectPoolComponent objectPoolComponent = UnityGameFrameworkEntry.GetComponent<ObjectPoolComponent>();
             if (objectPoolComponent != null)
             {
                 objectPoolComponent.ReleaseAllUnused();
             }
 
-            ResourceComponent resourceCompoent = GameEntry.GetComponent<ResourceComponent>();
-            if (resourceCompoent != null)
-            {
-                resourceCompoent.ForceUnloadUnusedAssets(true);
-            }
+            // TODO
+            // ResourceComponent resourceCompoent = UnityGameFrameworkEntry.GetComponent<ResourceComponent>();
+            // if (resourceCompoent != null)
+            // {
+            //     resourceCompoent.ForceUnloadUnusedAssets(true);
+            // }
         }
     }
 }

@@ -1,22 +1,9 @@
-﻿//------------------------------------------------------------
-// Game Framework
-// Copyright © 2013-2021 Jiang Yin. All rights reserved.
-// Homepage: https://gameframework.cn/
-// Feedback: mailto:ellan@gameframework.cn
-//------------------------------------------------------------
-
-using GameFramework.Download;
-using GameFramework.FileSystem;
-using GameFramework.ObjectPool;
-using System;
-using System.Collections.Generic;
-
-namespace GameFramework.Resource
+﻿namespace GameFramework.Resource
 {
     /// <summary>
-    /// 资源管理器接口。
+    /// 资源加载辅助器接口。
     /// </summary>
-    public interface IResourceManager
+    public interface IResourceLoadHelper
     {
         /// <summary>
         /// 检查资源是否存在。
@@ -35,7 +22,7 @@ namespace GameFramework.Resource
         /// <param name="packageName">指定资源包的名称。不传使用默认资源包。</param>
         void LoadAsset(string location, int priority, LoadAssetCallbacks loadAssetCallbacks, object userData,
             string packageName = "");
-        
+
         /// <summary>
         /// 异步加载场景。
         /// </summary>
@@ -45,7 +32,7 @@ namespace GameFramework.Resource
         /// <param name="userData">用户自定义数据。</param>
         void LoadScene(string sceneAssetName, int priority, LoadSceneCallbacks loadSceneCallbacks,
             object userData);
-        
+
         /// <summary>
         /// 异步卸载场景。
         /// </summary>

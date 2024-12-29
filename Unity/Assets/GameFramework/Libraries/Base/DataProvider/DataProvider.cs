@@ -196,7 +196,7 @@ namespace GameFramework
             {
                 case HasAssetResult.AssetOnDisk:
                 case HasAssetResult.AssetOnFileSystem:
-                    m_ResourceManager.LoadAsset(dataAssetName, priority, m_LoadAssetCallbacks, userData);
+                    m_ResourceManager.LoadAssetAsync(dataAssetName, priority, m_LoadAssetCallbacks, userData);
                     break;
 
                 case HasAssetResult.BinaryOnDisk:

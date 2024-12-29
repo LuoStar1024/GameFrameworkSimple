@@ -580,7 +580,7 @@ namespace UnityGameFramework.Runtime
         /// <param name="callback">回调函数。</param>
         /// <param name="customPackageName">指定资源包的名称。不传使用默认资源包</param>
         /// <typeparam name="T">要加载资源的类型。</typeparam>
-        public void LoadAsset<T>(string location, Action<T> callback, string customPackageName = "") where T : UnityEngine.Object
+        public void LoadAssetAsync<T>(string location, Action<T> callback, string customPackageName = "") where T : UnityEngine.Object
         {
             if (string.IsNullOrEmpty(location))
             {
@@ -588,7 +588,7 @@ namespace UnityGameFramework.Runtime
                 return;
             }
             
-            m_ResourceLoadHelper.LoadAsset<T>(location, callback, packageName: customPackageName);
+            _ = m_ResourceLoadHelper.LoadAssetAsync<T>(location, callback, packageName: customPackageName);
         }
 
         /// <summary>
